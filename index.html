@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For Suhanya (Milky)</title>
+
+<style>
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  text-align:center;
+  color:white;
+  background-size:cover;
+  background-position:center;
+  overflow:hidden;
+}
+
+.overlay{
+  background:rgba(0,0,0,0.55);
+  min-height:100vh;
+  padding:60px 20px;
+}
+
+.page{display:none;}
+.active{display:block;}
+
+h1{font-size:2.5em;}
+p{font-size:1.2em; max-width:700px; margin:20px auto;}
+
+button{
+  padding:15px 30px;
+  border:none;
+  border-radius:25px;
+  font-size:1.1em;
+  margin:10px;
+  cursor:pointer;
+  background:white;
+  color:#ff4081;
+}
+
+.heart{
+  position:fixed;
+  top:-10%;
+  font-size:22px;
+  animation:fall linear infinite;
+}
+
+@keyframes fall{
+  to{transform:translateY(110vh);}
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music" src="music.mp3"></audio>
+
+<div class="overlay">
+
+<div class="page active">
+  <h1>Hi Suhanya (Milky) 💖</h1>
+  <p>Are you ready for something made just for you?</p>
+  <button onclick="next()">Yes 💕</button>
+  <button onclick="next()">No 🙈</button>
+</div>
+
+<div class="page">
+  <h1>You have no escape 😌</h1>
+  <p>No matter what you click, love always wins.</p>
+  <button onclick="next()">Yes ❤️</button>
+  <button onmouseover="moveNo(this)">No 🤭</button>
+</div>
+
+<div class="page">
+  <h1>You are special ✨</h1>
+  <p>Your smile is my favorite place.</p>
+  <button onclick="next()">Yes 💖</button>
+  <button onmouseover="moveNo(this)">No 😆</button>
+</div>
+
+<div class="page">
+  <h1>You feel like home 🏡</h1>
+  <p>With you, everything feels right.</p>
+  <button onclick="next()">Yes 💗</button>
+  <button onmouseover="moveNo(this)">No 🙃</button>
+</div>
+
+<div class="page">
+  <h1>I have a promise 💍</h1>
+  <p>I promise to choose you every single day.</p>
+  <button onclick="next()">Yes ❤️</button>
+</div>
+
+<div class="page">
+  <h1>Almost there 🥹</h1>
+  <p>One last step before your surprise.</p>
+  <button onclick="next()">Continue 💕</button>
+</div>
+
+<div class="page">
+  <h1>Happy Birthday Potti Pilla 🎂💖</h1>
+  <p>
+    You are my happiness,<br>
+    my comfort,<br>
+    my forever.
+  </p>
+  <p style="font-size:1.4em;">
+    💍 Will you be mine,<br>
+    today, tomorrow and always?
+  </p>
+  <p>❤️ I love you endlessly ❤️</p>
+</div>
+
+</div>
+
+<script>
+let page=0;
+const pages=document.querySelectorAll(".page");
+const bg=[
+  "img1.jpg",
+  "img2.jpg",
+  "img3.jpg",
+  "img4.jpg",
+  "img5.jpg",
+  "img4.jpg",
+  "img3.jpg"
+];
+
+document.body.style.backgroundImage=`url(${bg[0]})`;
+
+function next(){
+  if(page===0){
+    const m=document.getElementById("music");
+    m.volume=0; m.play();
+    let v=0;
+    const f=setInterval(()=>{
+      if(v<0.6){v+=0.02; m.volume=v;}
+      else clearInterval(f);
+    },200);
+  }
+  pages[page].classList.remove("active");
+  page++;
+  pages[page].classList.add("active");
+  document.body.style.backgroundImage=`url(${bg[page]})`;
+}
+
+function moveNo(btn){
+  btn.style.position="absolute";
+  btn.style.left=Math.random()*80+"vw";
+  btn.style.top=Math.random()*80+"vh";
+}
+
+setInterval(()=>{
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="💖";
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDuration=(4+Math.random()*4)+"s";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),8000);
+},300);
+</script>
+
+</body>
+</html>
